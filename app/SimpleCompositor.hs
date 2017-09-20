@@ -59,7 +59,7 @@ cleanupDbus dbus = do
     NameNotOwner -> putStrLn "Attemped to release com.SimulaHS.GenericCompositor from DBus and we are not the owner"
     NameNonExistent -> putStrLn "Attemped to release com.SimulaHS.GenericCompositor from DBus and the name does not exist"        
 
-mainBody :: a -> IO ()
+mainBody :: Client -> IO ()
 mainBody dbus = do
     seat <- newSimulaSeat
     -- is OpenVR installed and working?
@@ -98,6 +98,5 @@ mainBody dbus = do
 
 main :: IO ()
 main = do
-  --dbus <- connectDbus
-  --mainBody dbus
-  mainBody void
+  dbus <- connectDbus
+  mainBody dbus
